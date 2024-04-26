@@ -4,8 +4,6 @@ function main(func_num, n)
         n = 10;
     end
 
-
-    fprintf('func_num = %d, n = %d\n', func_num, n);
     m = 2;
     x = zeros(m*n, 1);
     f = zeros(m, 1);
@@ -21,7 +19,6 @@ function main(func_num, n)
         fclose(fileID);
 
         x(n+1:2*n) = 0;
-        fprintf('func_num = %d\n', func_num);
         for k = 1:1
             f = cec22_test_func(x(1:n), func_num);
             for j = 1:1
