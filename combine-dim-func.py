@@ -2,7 +2,7 @@ import runpy
 import re
 import sys
 
-for i in range(1, 10):
+for i in range(1, 11):
     # CEC 2017 has 30 functions but we are skipping 2.
     #if i == 2:
     #    continue
