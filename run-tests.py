@@ -1,6 +1,10 @@
 import runpy
 import re
 import sys
+from start_matlab import start_engine
+from run_matlab import run_main
+from end_matlab import end_engine
+
 
 """ arg1 = sys.argv[1]
 arg2 = sys.argv[2]
@@ -16,7 +20,7 @@ sys.argv = ['run-tests.py', arg1, arg2, arg3]
 #import the original data
 
 runpy.run_path('./import-original.py')
-runpy.run_path('./run-matlab.py')
+run_main(eng)
 
 # Open the dimension file and func_num file and read its contents
 
@@ -44,7 +48,7 @@ lastTwoDigits = after[-2:]
 
 while int(eightDigits) == 0:
     runpy.run_path('./delete-floating-point.py')
-    runpy.run_path('./run-matlab.py')
+    run_main(eng)
     with open(f'test_data/current_result_{argNum}.txt', 'r') as file:
         result = file.read()
 
@@ -102,7 +106,7 @@ runpy.run_path('./first-run.py')
 
 runpy.run_path('./convert-e-to-float.py')
 
-runpy.run_path('./run-matlab.py')
+run_main(eng)
 
 
 
@@ -134,7 +138,7 @@ while int(eightDigits) > 0 or int(lastTwoDigits) < 96:
     
     runpy.run_path('./half.py')
     
-    runpy.run_path('./run-matlab.py')
+    run_main(eng)
     with open(f'test_data/current_result_{argNum}.txt', 'r') as file:
         result = file.read()
 
@@ -162,7 +166,7 @@ with open(f'test_data/shift_data_{argNum}_final_bisection.txt', 'w') as file:
 
 runpy.run_path('./deviation.py')
 runpy.run_path('./inspection.py')
-runpy.run_path('./run-matlab.py')
+run_main(eng)
 
 with open(f'test_data/current_result_{argNum}.txt', 'r') as file:
     result = file.read()
@@ -272,7 +276,7 @@ if int(eightDigits) > 0:
             file.write(median_deviation)
         
         runpy.run_path('./inspection.py')
-        runpy.run_path('./run-matlab.py')
+        run_main(eng)
 
         with open(f'test_data/current_result_{argNum}.txt', 'r') as file:
             result = file.read()
@@ -371,7 +375,7 @@ else:
                 file.write(median_deviation)
             
             runpy.run_path('./inspection.py')
-            runpy.run_path('./run-matlab.py')
+            run_main(eng)
 
             with open(f'test_data/current_result_{argNum}.txt', 'r') as file:
                 result = file.read()
@@ -396,4 +400,3 @@ with open(f'test_data/shift_data_{argNum}_deviation_final.txt', 'r') as file:
 with open(f'test_data/result/result_data_{argNum}_dim_{dimension}_number_of_element_{number_of_element+1}.txt', 'w') as file:
     file.write("deviation:")
     file.write(deviation)
-    
