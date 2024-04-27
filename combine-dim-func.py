@@ -3,9 +3,11 @@ import re
 import sys
 import matlab.engine
 
-
+skipped = {6}
 eng = matlab.engine.start_matlab()
 for i in range(1, 13):
+    if i in skipped:
+        continue
     # CEC 2022 has 12 functions
     for j in [10, 20]:
         for k in range(1, j+1):

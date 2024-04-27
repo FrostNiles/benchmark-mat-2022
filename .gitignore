@@ -5,3 +5,5 @@
 /test_data/*
 
 !/test_data/result/
+
+/__pycache__/
