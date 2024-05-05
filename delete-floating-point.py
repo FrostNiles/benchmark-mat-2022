@@ -3,9 +3,10 @@ import sys
 
 argNum = sys.argv[1]
 numberOfDelete = sys.argv[3]
+dimension = sys.argv[2]
 
 numberOfDelete = int(numberOfDelete) - 1
-
+number_of_element = numberOfDelete
 # Open the file and read its contents
 with open(f'test_data/shift_data_{argNum}.txt', 'r') as file:
     data = file.read()
@@ -21,13 +22,19 @@ with open(f'test_data/shift_data_{argNum}_backup.txt', 'w') as file:
 # so I will delete the number before "e" from the number which is in the position 1
 
 
+
 # Extract the second number from the modified data
-numbers = re.findall(r'(-?\d+\.\d+e[+-]\d+)', data)
+numbers = re.findall(r'(-?\d*\.?\d*e[+-]\d+)', data)
+if len (numbers) < 100:
+    with open(f'test_data/result/result_data_{argNum}_dim_{dimension}_number_of_element_{number_of_element+1}.txt', 'w') as file:
+        file.write(f"deviation:{float('inf')}")
+    raise Exception("Stopping execution of delete-floating-point.py because the number of numbers in the file is less than 100.")
+
 if len(numbers) >= numberOfDelete:
     numeroToDelete = numbers[numberOfDelete]
 else:
     print("The number of the position to delete is greater than the number of numbers in the file")
-    sys.exit()
+    raise Exception("Stopping execution of delete-floating-point.py because the number of the position to delete is greater than the number of numbers in the file.")
 
 #delete the number before "e" from the number in variable numeroToDelete
 modified_number = re.sub(r'(\d)(e)', r'\2', numeroToDelete)

@@ -3,7 +3,7 @@ import re
 import sys
 import matlab.engine
 
-skipped = {6}
+skipped = {12}
 eng = matlab.engine.start_matlab()
 for i in range(1, 13):
     if i in skipped:
